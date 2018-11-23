@@ -1,13 +1,11 @@
 # lineIntSquaredExponential
-For evaluating double line integrals of the squared exponential covariance function
-
-For details see 
+Comparison code for the paper at
 
 Two example matlab scripts are included
 1. comparison_set_2.m: Runs set two from the paper and plots the histogram
 2. comparison_all_sets.m: Runs all sets from the paper and plots the output. Note, the log10 of the error is being plotted which for set 4 is -inf and so displays as a blank point on the plot
 
-Source code for the mex function "intTwoK.c" is included and has been mexxed and tested on OSX 10.12.6 and UNIX using gsl 2.5. These files are
+Source code for the mex function "intTwoK.c" is included and has been mexxed and tested on OSX 10.12.6 and Ubuntu 18.04 using gsl 2.5. These files are
 1. intTwoK.mexmaci64
 2. intTwoK.mexa64
 
