@@ -22,12 +22,6 @@
 #include <gsl/gsl_integration.h>
 #include <gsl/gsl_errno.h>
 
-// #if !defined(_WIN32)         // matlabs documents says you shoudl do this but apparently not needed
-// #define dgemm dgemm_
-// #define ddot ddot_
-// #define dnrm2 dnrm2_
-// #endif
-
 
 #define DBL_EPS 2.220446049250313080847e-16
 
@@ -123,7 +117,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }else if (ww < DBL_EPS && xx < DBL_EPS){
         OUT[0] = L1*L2*exp(-uu/2);
         OUT[1] = 0;
-        OUT[2] = -2;
+        OUT[2] = -1;
         return;
     }else{
         b = 2*ddot(&m,u,&ione,R+m,&ione);
