@@ -1,5 +1,5 @@
 
-n = 10;
+n = 6;
 ntrials = 10000;
 T1 = NaN(ntrials,1);
 T2 = T1;
