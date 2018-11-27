@@ -11,9 +11,11 @@ nparamsets = 8;
 
 matI2time = NaN(nparamsets,ntrials);
 simps10time = matI2time;
+simps100time = matI2time;
 simps200time = matI2time;
 newMethtime = matI2time;
 simps10err = matI2time;
+simps100err = matI2time;
 simps200err = matI2time;
 newMetherr = matI2time;
 BNtime = matI2time;
@@ -108,6 +110,12 @@ I2 = intTwoSimps(u,w,x,V,order,order);
 simps10time(p,i) = toc;
 simps10err(p,i) = abs(I1 - I2);
 
+order = 100;  %Higher order => higher accuracy
+tic
+I2 = intTwoSimps(u,w,x,V,order,order);
+simps100time(p,i) = toc;
+simps100err(p,i) = abs(I1 - I2);
+
 order = 200;  
 tic
 I2 = intTwoSimps(u,w,x,V,order,order);
@@ -144,6 +152,7 @@ subplot 211
 plot(log10(mean(matI2time,2)))
 hold on
 plot(log10(mean(simps10time,2)),'-x')
+plot(log10(mean(simps100time,2)),'-x')
 plot(log10(mean(simps200time,2)),'-o')
 plot(log10(mean(BNtime,2)),'--')
 plot(log10(mean(newMethtime,2)),'-s')
@@ -151,12 +160,13 @@ hold off
 title('1-norm run times')
 ylabel('log10 of time')
 xlabel('param set')
-legend('matlab integral2','simpsons order 10','simpsons order 200','BN','new method')
+legend('matlab integral2','simpsons p=10','simpsons p=100','simpsons p=200','BN','new method')
 set(gca,'XTick',[1:nparamsets])
 
 subplot 212
 plot(log10(mean(simps10err,2)),'-x')
 hold on
+plot(log10(mean(simps100err,2)),'-o')
 plot(log10(mean(simps200err,2)),'-o')
 plot(log10(mean(BNerr,2)),'-x')
 plot(log10(mean(newMetherr,2)),'-s')
@@ -164,7 +174,7 @@ hold off
 title('1-norm error')
 ylabel('log10 of error')
 xlabel('param set')
-legend('simpsons order 10','simpsons order 200','BN','new method')
+legend('simpsons p=10','simpsons p=100','simpsons p=200','BN','new method')
 set(gca,'XTick',[1:nparamsets])
 
 
