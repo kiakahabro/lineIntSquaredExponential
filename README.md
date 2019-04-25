@@ -1,5 +1,5 @@
 # lineIntSquaredExponential
-Comparison code for the paper at
+Comparison code for the paper at https://arxiv.org/abs/1812.07319
 
 Two example matlab scripts are included
 1. comparison_set_2.m: Runs set two from the paper and plots the histogram
