@@ -1,5 +1,5 @@
 function out = intTwoK(uij, wi, wj, V)
-% intTwoK solves the double line integral of the kernel function
+% intTwoK solves the double line integral of the kernel squared exponential function
 %
 %                             /1 /1
 % K_{ij} = ||w_{i}|| ||w_{j}|||  |  exp((r_{i}(t) - r_{j}(s)).' * V * (r_{i}(t) - r_{j}(s)) ds dt,
@@ -18,8 +18,12 @@ function out = intTwoK(uij, wi, wj, V)
 % out(4): gsl integration routine error code, if code == 0 then no issues. 
 %         Otherwise see gsl see referenced paper for description of the inputs
 %
+% Associated publication:
+% Hendriks, J. N., Jidling, C., Wills, A., & Schön, T. B. (2018). 
+% Evaluating the squared-exponential covariance function in Gaussian processes 
+% with integral observations: Technical report, arXiv:1812.07319.
 %
-% Copyright (c) 2018-${BUILD_YEAR} Johannes Hendricks and others
+% Copyright (c) 2018-${BUILD_YEAR} Johannes Hendriks and others
 %
 % Permission is hereby granted, free of charge, to any person obtaining
 % a copy of this software and associated documentation files (the
