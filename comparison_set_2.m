@@ -19,59 +19,59 @@ error5 = T1;
 % rng(1)
 
 for i = 1:ntrials
-u = rand(n,1);
-w = rand(n,1);
-x = w+1e-8*randn(n,1);
-V = eye(n);
-L1 = norm(w);
-L2 = norm(x);
+    u = rand(n,1);
+    w = rand(n,1);
+    x = w+1e-8*randn(n,1);
+    V = eye(n);
+    L1 = norm(w);
+    L2 = norm(x);
 
 
-%Using Matlab's integral2
-z3   = u;
-d1   = z3'*V*z3;
-d2   = z3'*V*w;
-d3   = z3'*V*x;
-d4   = w'*V*x;
-d5   = w'*V*w;
-d6   = x'*V*x;
+    %Using Matlab's integral2
+    z3   = u;
+    d1   = z3'*V*z3;
+    d2   = z3'*V*w;
+    d3   = z3'*V*x;
+    d4   = w'*V*x;
+    d5   = w'*V*w;
+    d6   = x'*V*x;
 
-tic
-I1 = L1*L2*integral2(@(t,v) exp(-0.5*(d1+2*t*d2-2*v*d3-2*t.*v.*d4+t.*t*d5+v.*v*d6)),...
-    0,1,0,1,'AbsTol',eps,'RelTol',eps);
-T1(i) = toc;
-
-
-% using 2D simpsosn rules
-
-order = 10;  %Higher order => higher accuracy
-tic
-I2 = intTwoSimps(u,w,x,V,order,order);
-T2(i) = toc;
-error2(i) = abs(I1 - I2);
-
-order = 200;  %Higher order => higher accuracy
-tic
-I2 = intTwoSimps(u,w,x,V,order,order);
-T3(i) = toc;
-error3(i) = abs(I1 - I2);
+    tic
+    I1 = L1*L2*integral2(@(t,v) exp(-0.5*(d1+2*t*d2-2*v*d3-2*t.*v.*d4+t.*t*d5+v.*v*d6)),...
+        0,1,0,1,'AbsTol',eps,'RelTol',eps);
+    T1(i) = toc;
 
 
-% bivariate normal method
+    % using 2D simpsosn rules
 
-tic
-i4 = L1*L2*intTwo_BN(u,w,x,V);
-T4(i) = toc;
-error4(i) = abs(I1-i4);
+    order = 10;  %Higher order => higher accuracy
+    tic
+    I2 = intTwoSimps(u,w,x,V,order,order);
+    T2(i) = toc;
+    error2(i) = abs(I1 - I2);
 
-% proposed method
-tic
-OUT2 = intTwoK(u,w,x,V); % OUT presently contains [result,abserr,nevals,info]
+    order = 200;  %Higher order => higher accuracy
+    tic
+    I2 = intTwoSimps(u,w,x,V,order,order);
+    T3(i) = toc;
+    error3(i) = abs(I1 - I2);
 
-T5(i) = toc;
-error5(i) = abs(I1-OUT2(1));
 
-i
+    % bivariate normal method
+
+    tic
+    i4 = L1*L2*intTwo_BN(u,w,x,V);
+    T4(i) = toc;
+    error4(i) = abs(I1-i4);
+
+    % proposed method
+    tic
+    OUT2 = intTwoK(u,w,x,V); % OUT presently contains [result,abserr,nevals,info]
+
+    T5(i) = toc;
+    error5(i) = abs(I1-OUT2(1));
+
+    i
 end
 
 
