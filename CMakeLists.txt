@@ -115,6 +115,16 @@ foreach(mexfilepath IN LISTS MEX_FILES)
 
     set_target_properties(${TARGET_MEX} PROPERTIES SUFFIX ".${Matlab_MEX_EXTENSION}")
     set_target_properties(${TARGET_MEX} PROPERTIES PREFIX "")
-    
+endforeach()
+
+# Templating files
+
+string(TIMESTAMP BUILD_YEAR "%Y")
+string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
+string(TIMESTAMP BUILD_TIME "%H:%M:%S")
+file(GLOB MATLAB_TEMPLATE_FILES  CONFIGURE_DEPENDS ${DIR_MEX_SRC}/*.m)
+foreach(MATLAB_TEMPLATE_FILE IN LISTS MATLAB_TEMPLATE_FILES)
+  get_filename_component(MATLAB_FILE_NAME ${MATLAB_TEMPLATE_FILE} NAME_WE)
+  configure_file(${DIR_MEX_SRC}/${MATLAB_FILE_NAME}.m ${CMAKE_CURRENT_BINARY_DIR}/${MATLAB_FILE_NAME}.m)
 endforeach()
 
