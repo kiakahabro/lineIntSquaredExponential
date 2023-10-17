@@ -1,3 +1,8 @@
+clc
+clear
+
+addpath build/
+
 
 n = 6;
 ntrials = 10000;

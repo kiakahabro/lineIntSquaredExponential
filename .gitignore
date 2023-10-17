@@ -1,0 +1,42 @@
+# Compiled object files
+*.o
+*.obj
+*.so
+*.dll
+
+# Executable files
+*.exe
+*.out
+
+# Generated build files
+build/
+bin/
+
+# MATLAB MEX files
+*.mex*
+
+# CMake build directories
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+CMakeGeneratedFiles/
+
+# Visual Studio files
+.vs/
+
+# Xcode files
+*.xcodeproj/
+*.xcworkspace/
+*.xcuserstate
+
+# Eclipse files
+.settings/
+
+# Other IDE-generated files
+.idea/
+.project
+.cproject
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
