@@ -1,11 +1,11 @@
 function out = intTwoK(uij, wi, wj, V)%#ok<STOUT,INUSD>
 % intTwoK solves the double line integral of the kernel squared exponential function
 %
-%                             /1 /1
-% K_{ij} = ||w_{i}|| ||w_{j}|||  |  exp((r_{i}(t) - r_{j}(s)).' * V * (r_{i}(t) - r_{j}(s)) ds dt,
-%                             /0 /0
+%                             /1 /1   1 
+% K_{ij} = ||w_{i}|| ||w_{j}|||  |  - - exp((r_{i}(t) - r_{j}(s)).' * V * (r_{i}(t) - r_{j}(s)) ds dt,
+%                             /0 /0   2
 %
-% where r_{i} = p_{i} + t * w_{i} and r_{j} = p_{j} + s * w_{j}. The
+% where r_{i}(t) = p_{i} + t * w_{i} and r_{j}(s) = p_{j} + s * w_{j}. The
 % origins are combined such that u_{ij} = p_{i} - p_{j}.
 %
 % out = intTwoK(uij, wi, wj, V)
