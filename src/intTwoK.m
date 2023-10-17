@@ -1,4 +1,4 @@
-function out = intTwoK(uij, wi, wj, V)
+function out = intTwoK(uij, wi, wj, V)%#ok<STOUT,INUSD>
 % intTwoK solves the double line integral of the kernel squared exponential function
 %
 %                             /1 /1
